@@ -7,17 +7,17 @@
  * Return: unsorted partitioned arrays
  */
 
-int partition(int *array, int first, int last)
+int partition(int *array, ssize_t first, ssize_t last)
 {
-	int j;
+	ssize_t j;
 	int pivot = array[last];
-	int i = (first - 1);
+	ssize_t i = (first - 1);
 
 	for (j = first; j <= last - 1; j++)
 	{
 		if (array[j] < pivot)
 		{
-			i++;
+			i += 1;
 			swap_int(&array[i], &array[j]);
 			print_array(array, last + 1);
 		}
@@ -34,7 +34,7 @@ int partition(int *array, int first, int last)
  * @last: last element
  */
 
-void quick_sort_two(int *array, int first, int last)
+void quick_sort_two(int *array, ssize_t first, ssize_t last)
 {
 	if (first < last)
 	{
@@ -55,7 +55,7 @@ void quick_sort_two(int *array, int first, int last)
 
 void quick_sort(int *array, size_t size)
 {
-	if (size <= 1)
+	if (size < 2)
 		return;
 
 	quick_sort_two(array, 0, size - 1);
