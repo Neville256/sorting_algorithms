@@ -14,25 +14,25 @@ int partition(int *array, ssize_t first, ssize_t last, size_t size)
 {
 	ssize_t j;
 	int pivot = array[last];
-	ssize_t i = (first - 1);
+	ssize_t i = first;
 
-	for (j = first; j <= last - 1; j++)
+	for (j = first; j < last; j++)
 	{
 		if (array[j] <= pivot)
 		{
-			i++;
 			swap_int(&array[i], &array[j]);
 			if (i != j)
 			{
 				print_array(array, size);
 			}
+			i++;
 		}
 	}
-	swap_int(&array[i + 1], &array[last]);
+	swap_int(&array[i], &array[last]);
 	if (i != j)
 		print_array(array, size);
 
-	return (i + 1);
+	return (i);
 }
 
 /**
