@@ -13,8 +13,8 @@
 int hoare(int *array, int low, int high, size_t size)
 {
 	int pivot = array[low];
-	int j = high + 1;
-	int i = low - 1;
+	int j = high;
+	int i = low;
 	
 	while (1)
 	{
