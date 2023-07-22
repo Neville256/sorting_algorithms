@@ -13,29 +13,28 @@
 int hoare(int *array, int low, int high, size_t size)
 {
 	int pivot = array[low];
-        int j = high + 1;
-        int i = low - 1;
-
-        while (1)
-        {
-                do
-                {
-                        i++;
-                }
-                while (array[i] < pivot);
-
-                do
-                {
-                        j--;
-                }
-                while (array[j] > pivot);
-
-                if (i >= j) /* pointers meet */
-                        return j;
-
-                swap_int(&array[i], &array[j]);
-		if (i != j)
-			print_array(array, size);
+	int j = high + 1;
+	int i = low - 1;
+	
+	while (1)
+	{
+		do
+		{
+			i++;
+		}
+		while (array[i] < pivot);
+		
+		do
+		{
+			j--;
+		}
+		while (array[j] > pivot);
+		
+		if (i >= j) /* pointers meet */
+			return j;
+		
+		swap_int(&array[i], &array[j]);
+		print_array(array, size);
         }
 }
 
