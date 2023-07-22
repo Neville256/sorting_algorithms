@@ -1,11 +1,11 @@
 #include "sort.h"
 
 /**
- * partition - divide and conquer the elements
+ * hoare - divide and conquer the elements
  * @size: size of the arrays
  * @array: array holding integers
- * @first: element on left side
- * @last: element on left side
+ * @low: element on left side
+ * @high: element on left side
  *
  * Return: unsorted partitioned arrays
  */
@@ -13,52 +13,49 @@
 int hoare(int *array, int low, int high, size_t size)
 {
 	int pivot = array[low];
-	int j = high;
-	int i = low;
-	
+	int j = high + 1;
+	int i = low - 1;
+
 	while (1)
 	{
-		do
-		{
+		do {
 			i++;
-		}
-		while (array[i] < pivot);
-		
-		do
-		{
+		} while (array[i] < pivot);
+
+		do {
 			j--;
-		}
-		while (array[j] > pivot);
-		
+		} while (array[j] > pivot);
+
 		if (i >= j) /* pointers meet */
-			return j;
-		
+			return (j);
+
 		swap_int(&array[i], &array[j]);
 		print_array(array, size);
-        }
+	}
 }
 
 /**
  * quick_sort_helper -function to implement the Quick sort algorithm
  * @low: integer at the beginning
  * @high: last element
+ * @array: array holding integers
+ * @size: size of the arrays
  */
 
 void quick_sort_helper(int *array, int low, int high, size_t size)
 {
-        if (low < high)
-        {
-                /* partition index is at the right place */
-                int pi = hoare(array, low, high, size);
+	int pi;
 
-                /*sort elements before and after partition*/
-                quick_sort_helper(array, low, pi, size);
-                quick_sort_helper(array, pi + 1, high, size);
-        }
+	if (low < high)
+	{
+		pi = hoare(array, low, high, size);
+		quick_sort_helper(array, low, pi, size);
+		quick_sort_helper(array, pi + 1, high, size);
+	}
 }
 
 /**
- * quick_sort - sorts an array of integers in
+ * quick_sort_hoare - sorts an array of integers in
  * ascending order using the Quick sort algorithm
  * @array: pointer to array of integers
  * @size: size of the array
@@ -66,10 +63,10 @@ void quick_sort_helper(int *array, int low, int high, size_t size)
 
 void quick_sort_hoare(int *array, size_t size)
 {
-        if (size < 2)
-                return;
+	if (size < 2)
+		return;
 
-        quick_sort_helper(array, 0, size - 1, size);
+	quick_sort_helper(array, 0, size - 1, size);
 }
 
 /**
@@ -80,7 +77,7 @@ void quick_sort_hoare(int *array, size_t size)
 
 void swap_int(int *a, int *b)
 {
-        int temp = *a;
-        *a = *b;
-        *b = temp;
+	int temp = *a;
+	*a = *b;
+	*b = temp;
 }
