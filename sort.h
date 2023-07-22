@@ -26,6 +26,9 @@ void swap_int(int *a, int *b);
 void quick_sort_two(int *array, ssize_t first, ssize_t last, size_t size);
 void quick_sort(int *array, size_t size);
 int partition(int *array, ssize_t first, ssize_t last, size_t size);
+void quick_sort_hoare(int *array, size_t size);
+void quick_sort_helper(int *array, int low, int high, size_t size);
+int hoare(int *array, int low, int high, size_t size);
 void shell_sort(int *array, size_t size);
 void cocktail_sort_list(listint_t **list);
 #endif
